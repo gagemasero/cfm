@@ -10,7 +10,7 @@
     :root {
       --bg: #eef3f8;
       --surface: #ffffff;
-      --surface-2: #f6f9fc;
+      --surface-2: #f6f9fc;a
       --ink: #1f2b3a;
       --muted: #5f7186;
       --line: #d7e2ee;
@@ -297,16 +297,6 @@
       gap: 8px;
     }
 
-
-    .checklist-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 10px; }
-    .checklist-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 10px; }
-    .building-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-    .compact-group { margin: 0 !important; padding: 0 !important; border: 0 !important; }
-
-    @media (max-width: 980px) {
-      .checklist-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-
     .check-row {
       display: grid;
       grid-template-columns: 24px 1fr;
@@ -487,10 +477,7 @@
       .hero-top,
       .meta-grid,
       .sections-grid,
-      .signature-grid,
-      .building-grid,
-      .checklist-2,
-      .checklist-3 {
+      .signature-grid {
         grid-template-columns: 1fr;
       }
 
@@ -629,12 +616,6 @@
       .checklist {
         gap: 1px;
       }
-
-      .checklist-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; column-gap: 8px; }
-      .checklist-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; column-gap: 8px; }
-      .building-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 14px; }
-      .group, .check-row, .signature-grid, .charge-box { break-inside: avoid; page-break-inside: avoid; }
-
 
       .check-row {
         min-height: auto;
@@ -800,7 +781,7 @@
 
               <div class="group">
                 <p class="group-title">Power to HVAC Equipment</p>
-                <div class="checklist checklist-3">
+                <div class="checklist">
                   <label class="check-row"><input type="checkbox"><span>Rooftop Units (RTUs)</span></label>
                   <label class="check-row"><input type="checkbox"><span>Furnaces</span></label>
                   <label class="check-row"><input type="checkbox"><span>Air Handler Units (AHUs)</span></label>
@@ -834,7 +815,7 @@
             <div class="section-body">
               <div class="group">
                 <p class="group-title">Gas Service</p>
-                <div class="checklist checklist-2">
+                <div class="checklist">
                   <label class="check-row"><input type="checkbox"><span>Gas meter set.</span></label>
                   <label class="check-row"><input type="checkbox"><span>Gas line bled.</span></label>
                 </div>
@@ -842,7 +823,7 @@
 
               <div class="group">
                 <p class="group-title">Gas to Equipment</p>
-                <div class="checklist checklist-2">
+                <div class="checklist">
                   <label class="check-row"><input type="checkbox"><span>Rooftop Units (RTUs)</span></label>
                   <label class="check-row"><input type="checkbox"><span>Furnaces</span></label>
                   <label class="check-row"><input type="checkbox"><span>Air Handler Units (AHUs)</span></label>
@@ -854,7 +835,7 @@
 
               <div class="group">
                 <p class="group-title">Condensate to Equipment</p>
-                <div class="checklist checklist-2">
+                <div class="checklist">
                   <label class="check-row"><input type="checkbox"><span>Rooftop Units (RTUs)</span></label>
                   <label class="check-row"><input type="checkbox"><span>Air Handler Units (AHUs)</span></label>
                   <label class="check-row"><input type="checkbox"><span>Make-Up Air Units (MAUs)</span></label>
@@ -871,19 +852,19 @@
               <div class="section-number">3</div>
               <h2>Building Checklist</h2>
             </div>
-            <div class="section-body building-grid">
-              <div class="group compact-group">
+            <div class="section-body" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+              <div class="group" style="margin:0;padding:0;border:0;">
                 <p class="group-title">Equipment Accessibility</p>
-                <div class="checklist checklist-2">
+                <div class="checklist">
                   <label class="check-row"><input type="checkbox"><span>All equipment to be started up is accessible.</span></label>
                   <label class="check-row"><input type="checkbox"><span>Roof access available.</span></label>
                   <label class="check-row"><input type="checkbox"><span>Floors accessible.</span></label>
                   <label class="check-row"><input type="checkbox"><span>Mezzanines accessible.</span></label>
                 </div>
               </div>
-              <div class="group compact-group">
+              <div class="group" style="margin:0;padding:0;border:0;">
                 <p class="group-title">Site Readiness</p>
-                <div class="checklist checklist-2">
+                <div class="checklist">
                   <label class="check-row"><input type="checkbox"><span>Dust control measures in place.</span></label>
                   <label class="check-row"><input type="checkbox"><span>Construction debris removed.</span></label>
                 </div>
@@ -909,32 +890,35 @@
               <strong>$500 ADDITIONAL TRIP CHARGE PER ADDITIONAL TRIP</strong>
               For projects located more than 180 miles from CFM Heating's place of business, the <strong>additional trip charge will increase to $1,000 per additional trip.</strong>
             </div>
-            <div class="authorization-block">
-              <h3>Contractor Authorization</h3>
-              <div class="signature-grid final-signature-grid">
-                <div class="field">
-                  <label for="printed-name">Authorized Representative (Printed Name)</label>
-                  <input id="printed-name" type="text" autocomplete="name">
+
+            <div class="signature-grid">
+              <div class="field">
+                <label for="printed-name">Printed Name</label>
+                <input id="printed-name" type="text" autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="title">Title</label>
+                <input id="title" type="text">
+              </div>
+              <div class="field signature-field">
+                <label>Signature</label>
+                <button type="button" class="signature-capture-btn" id="openSignatureBtn">Draw Signature</button>
+                <div class="signature-preview-wrap" id="signaturePreviewWrap" hidden>
+                  <img id="signaturePreview" alt="Captured signature">
+                  <button type="button" class="signature-change-btn" id="changeSignatureBtn">Change</button>
                 </div>
-                <div class="field">
-                  <label for="title">Title</label>
-                  <input id="title" type="text">
-                </div>
-                <div class="field">
-                  <label for="company">Company</label>
-                  <input id="company" type="text" autocomplete="organization">
-                </div>
-                <div class="field">
-                  <label for="bottom-date">Date</label>
-                  <input id="bottom-date" type="date">
-                </div>
-                <div class="field signature-line-field">
-                  <label>Signature</label>
-                  <div class="signature-line" aria-label="Signature line"></div>
-                  <small>Sign after saving as a PDF using a PDF editor, or print and sign by hand.</small>
-                </div>
+                <input id="signature-image" type="hidden">
+              </div>
+              <div class="field">
+                <label for="bottom-date">Date</label>
+                <input id="bottom-date" type="date">
               </div>
             </div>
+            <label class="electronic-consent">
+              <input id="signature-consent" type="checkbox">
+              <span>I agree that the electronic signature captured above is my signature and that I intend to sign and submit this acknowledgement electronically.</span>
+            </label>
+            <div class="audit-record" id="auditRecord">Signature audit record will be added when the form is signed.</div>
           </div>
         </section>
 
@@ -944,48 +928,234 @@
         </div>
       </div>
     </main>
-    <section class="final-step" aria-label="Final submission instructions">
-      <h2>Final Step</h2>
-      <p>After completing this checklist, use your browser's <strong>Print</strong> command and select <strong>Save as PDF</strong>.</p>
-      <p>Sign the completed PDF using a PDF editor, or print and sign it by hand. Then email the completed PDF to CFM Heating.</p>
-      <p class="final-reminder"><strong>Only after successful completion of the startup will CFM Heating schedule Testing and Balancing (T&amp;B).</strong></p>
-    </section>
+
+    <div class="actions">
+      <button type="button" class="primary" id="emailPdfBtn">Email Completed PDF</button>
+      <button type="button" class="secondary" id="downloadPdfBtn">Download Signed PDF</button>
+      <button type="button" class="secondary" id="printBtn">Print</button>
+      <button type="button" class="secondary" id="clearBtn">Clear Form</button>
+    </div>
+    <p class="screen-note">“Email Completed PDF” uses your device's share/email function and includes the signed PDF as an attachment when supported.</p>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
-    .authorization-block{margin-top:22px;padding-top:18px;border-top:1px solid #c8d3dd}
-    .authorization-block h3{margin:0 0 14px;color:#173b5e;font-size:18px}
-    .final-signature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .signature-line-field{grid-column:1/-1}
-    .signature-line{height:46px;border-bottom:2px solid #273746;background:transparent}
-    .signature-line-field small{display:block;margin-top:7px;color:#5a6875;font-size:11px;line-height:1.4}
-    .final-step{max-width:1100px;margin:24px auto 0;padding:20px 24px;border:2px solid #173b5e;border-radius:10px;background:#f4f8fc;break-inside:avoid;page-break-inside:avoid}
-    .final-step h2{margin:0 0 10px;color:#173b5e;font-size:20px}
-    .final-step p{margin:7px 0;line-height:1.5}
-    .final-reminder{margin-top:12px!important;padding-top:12px;border-top:1px solid #aebdca}
-    @media (max-width:720px){.final-signature-grid{grid-template-columns:1fr}}
-    @media print{
-      .final-step{margin-top:18px;border-color:#555;background:#fff}
-      .signature-line{height:42px}
-    }
+    .signature-capture-btn{width:100%;min-height:46px;border:2px dashed #355d84;background:#f4f8fc;color:#173b5e;border-radius:8px;font-weight:700;cursor:pointer}
+    .signature-preview-wrap{position:relative;min-height:82px;border:1px solid #aebdca;border-radius:8px;background:#fff;padding:6px}
+    .signature-preview-wrap img{display:block;width:100%;height:68px;object-fit:contain}
+    .signature-change-btn{position:absolute;right:6px;top:6px;border:0;border-radius:5px;padding:4px 8px;background:#173b5e;color:#fff;cursor:pointer}
+    .electronic-consent{display:flex;gap:10px;margin-top:18px;padding:14px;border:1px solid #91a7bb;border-radius:8px;background:#f5f9fc;font-size:13px;line-height:1.45}
+    .electronic-consent input{width:18px;height:18px;flex:0 0 auto;margin-top:2px}
+    .audit-record{margin-top:9px;font-size:11px;color:#506274}
+    .signature-modal{position:fixed;inset:0;background:rgba(0,0,0,.66);display:none;align-items:center;justify-content:center;z-index:9999;padding:18px}
+    .signature-box{background:#fff;padding:20px;border-radius:12px;max-width:760px;width:100%;box-shadow:0 20px 70px rgba(0,0,0,.35)}
+    .signature-box h3{margin:0 0 6px}.signature-box p{margin:0 0 12px;color:#526474;font-size:13px}
+    .signature-pad-canvas{border:2px solid #355d84;border-radius:8px;width:100%;height:220px;touch-action:none;background:#fff}
+    .signature-modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:12px}
+    .status-message{display:none;margin:12px auto 0;max-width:900px;padding:12px 16px;border-radius:8px;font-weight:600}
+    .status-message.show{display:block}.status-message.error{background:#ffe8e8;color:#8b1111}.status-message.success{background:#e7f6ec;color:#185d30}.status-message.info{background:#e8f2fb;color:#174d78}
+    @media print{.signature-change-btn,.signature-capture-btn,.electronic-consent input{display:none!important}.signature-preview-wrap[hidden]{display:none!important}.electronic-consent{border:0;padding:0;background:none}.actions,.screen-note,.status-message{display:none!important}}
   </style>
+  <div class="signature-modal" id="sigModal" role="dialog" aria-modal="true" aria-labelledby="sigTitle">
+    <div class="signature-box">
+      <h3 id="sigTitle">Draw Your Signature</h3>
+      <p>Use your mouse, finger, or stylus. Selecting “Accept Signature” converts the signature into an embedded PNG image.</p>
+      <canvas id="sigCanvas" class="signature-pad-canvas" width="720" height="220"></canvas>
+      <div class="signature-modal-actions">
+        <button type="button" class="secondary" id="cancelSigBtn">Cancel</button>
+        <button type="button" class="secondary" id="clearSigBtn">Clear</button>
+        <button type="button" class="primary" id="acceptSigBtn">Accept Signature</button>
+      </div>
+    </div>
+  </div>
+  <div class="status-message" id="statusMessage"></div>
   <script>
-    const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
+    const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]:not(#signature-consent)'));
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
+    const sigModal = document.getElementById('sigModal');
+    const canvas = document.getElementById('sigCanvas');
+    const ctx = canvas.getContext('2d');
+    const signatureImageInput = document.getElementById('signature-image');
+    const signaturePreview = document.getElementById('signaturePreview');
+    const signaturePreviewWrap = document.getElementById('signaturePreviewWrap');
+    const auditRecord = document.getElementById('auditRecord');
+    const statusMessage = document.getElementById('statusMessage');
+    let drawing = false;
+    let hasInk = false;
+    let signatureTimestamp = '';
+
     function updateProgress(){
       const total=checkboxes.length, complete=checkboxes.filter(b=>b.checked).length;
       const percent=total?Math.round(complete/total*100):0;
-      if(progressBar) progressBar.style.width=percent+'%';
-      if(progressText) progressText.textContent=percent+'% complete';
+      progressBar.style.width=percent+'%'; progressText.textContent=percent+'% complete';
     }
-    checkboxes.forEach(b=>b.addEventListener('change',updateProgress));
-    updateProgress();
-    const today=new Date().toISOString().slice(0,10);
-    const topDate=document.getElementById('top-date');
-    const bottomDate=document.getElementById('bottom-date');
-    if(topDate && !topDate.value) topDate.value=today;
-    if(bottomDate && !bottomDate.value) bottomDate.value=today;
+    checkboxes.forEach(b=>b.addEventListener('change',updateProgress)); updateProgress();
+
+    function showStatus(message,type='info'){statusMessage.textContent=message;statusMessage.className='status-message show '+type;statusMessage.scrollIntoView({behavior:'smooth',block:'center'});}
+    function point(e){const r=canvas.getBoundingClientRect(),t=e.touches?e.touches[0]:e;return{x:(t.clientX-r.left)*canvas.width/r.width,y:(t.clientY-r.top)*canvas.height/r.height};}
+    function startDraw(e){drawing=true;hasInk=true;const a=point(e);ctx.beginPath();ctx.moveTo(a.x,a.y);e.preventDefault();}
+    function draw(e){if(!drawing)return;const a=point(e);ctx.lineWidth=2.5;ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#111';ctx.lineTo(a.x,a.y);ctx.stroke();e.preventDefault();}
+    function stopDraw(){drawing=false;}
+    canvas.addEventListener('mousedown',startDraw);canvas.addEventListener('mousemove',draw);window.addEventListener('mouseup',stopDraw);
+    canvas.addEventListener('touchstart',startDraw,{passive:false});canvas.addEventListener('touchmove',draw,{passive:false});canvas.addEventListener('touchend',stopDraw);
+    function clearSignatureCanvas(){ctx.clearRect(0,0,canvas.width,canvas.height);hasInk=false;}
+    function openSignature(){clearSignatureCanvas();sigModal.style.display='flex';}
+    function closeSignature(){sigModal.style.display='none';}
+    document.getElementById('openSignatureBtn').addEventListener('click',openSignature);
+    document.getElementById('changeSignatureBtn').addEventListener('click',openSignature);
+    document.getElementById('cancelSigBtn').addEventListener('click',closeSignature);
+    document.getElementById('clearSigBtn').addEventListener('click',clearSignatureCanvas);
+    document.getElementById('acceptSigBtn').addEventListener('click',()=>{
+      if(!hasInk){alert('Please draw a signature before accepting it.');return;}
+      const image=canvas.toDataURL('image/png');
+      signatureImageInput.value=image;signaturePreview.src=image;signaturePreviewWrap.hidden=false;
+      document.getElementById('openSignatureBtn').style.display='none';
+      signatureTimestamp=new Date().toISOString();
+      auditRecord.textContent='Electronic signature image captured: '+new Date(signatureTimestamp).toLocaleString()+' | Browser: '+navigator.userAgent;
+      closeSignature();
+    });
+
+    function validateSubmission(){
+      const missing=[];
+      [['project','Project'],['contractor-company','Contractor / Company'],['printed-name','Printed Name'],['title','Title'],['bottom-date','Date']].forEach(([id,label])=>{if(!document.getElementById(id).value.trim())missing.push(label);});
+      if(!signatureImageInput.value)missing.push('Drawn Signature');
+      if(!document.getElementById('signature-consent').checked)missing.push('Electronic Signature Consent');
+      if(missing.length){showStatus('Complete these required items before submitting: '+missing.join(', ')+'.','error');return false;}
+      return true;
+    }
+
+    async function buildPdfFile(){
+      if(!validateSubmission())return null;
+      showStatus('Creating the signed PDF…','info');
+      const {jsPDF}=window.jspdf;
+      const source=document.querySelector('.document');
+      const stage=document.createElement('div');
+      stage.className='pdf-export-stage';
+      stage.setAttribute('aria-hidden','true');
+      const clone=source.cloneNode(true);
+      clone.querySelectorAll('.progress-wrap,.actions,.screen-note,.status-message,.signature-change-btn,.signature-capture-btn').forEach(el=>el.remove());
+      stage.appendChild(clone);
+      document.body.appendChild(stage);
+
+      try{
+        const hero=clone.querySelector('.hero');
+        const cards=[...clone.querySelectorAll('.section-card')];
+        const ack=clone.querySelector('.ack-card');
+        const blocks=[];
+
+        if(hero)blocks.push(hero);
+        if(cards.length>=2){
+          const row=document.createElement('div');
+          row.className='pdf-card-row';
+          row.appendChild(cards[0]);
+          row.appendChild(cards[1]);
+          cards[0].parentNode.insertBefore(row,cards[0]);
+          blocks.push(row);
+          cards.slice(2).forEach(card=>blocks.push(card));
+        }else{
+          cards.forEach(card=>blocks.push(card));
+        }
+        if(ack)blocks.push(ack);
+
+        const pdf=new jsPDF('p','pt','letter');
+        const pageW=pdf.internal.pageSize.getWidth();
+        const pageH=pdf.internal.pageSize.getHeight();
+        const margin=32;
+        const contentW=pageW-margin*2;
+        const contentH=pageH-margin*2;
+        const gap=10;
+        let cursorY=margin;
+        let pageNumber=1;
+
+        const addPageNumber=()=>{
+          pdf.setFontSize(8);
+          pdf.setTextColor(110);
+          pdf.text(`Page ${pageNumber}`,pageW-margin,pageH-14,{align:'right'});
+          pdf.setTextColor(0);
+        };
+
+        for(const block of blocks){
+          const canvasBlock=await html2canvas(block,{scale:2,useCORS:true,backgroundColor:'#ffffff',logging:false,windowWidth:816});
+          const drawH=canvasBlock.height*contentW/canvasBlock.width;
+
+          if(drawH<=contentH){
+            if(cursorY>margin && cursorY+drawH>pageH-margin){
+              addPageNumber();
+              pdf.addPage();
+              pageNumber++;
+              cursorY=margin;
+            }
+            pdf.addImage(canvasBlock.toDataURL('image/jpeg',0.95),'JPEG',margin,cursorY,contentW,drawH);
+            cursorY+=drawH+gap;
+          }else{
+            if(cursorY>margin){
+              addPageNumber();
+              pdf.addPage();
+              pageNumber++;
+              cursorY=margin;
+            }
+            const slicePx=Math.floor(canvasBlock.width*contentH/contentW);
+            let sourceY=0;
+            while(sourceY<canvasBlock.height){
+              const sliceH=Math.min(slicePx,canvasBlock.height-sourceY);
+              const piece=document.createElement('canvas');
+              piece.width=canvasBlock.width;
+              piece.height=sliceH;
+              piece.getContext('2d').drawImage(canvasBlock,0,sourceY,canvasBlock.width,sliceH,0,0,canvasBlock.width,sliceH);
+              const pieceH=sliceH*contentW/canvasBlock.width;
+              pdf.addImage(piece.toDataURL('image/jpeg',0.95),'JPEG',margin,margin,contentW,pieceH);
+              sourceY+=sliceH;
+              if(sourceY<canvasBlock.height){
+                addPageNumber();
+                pdf.addPage();
+                pageNumber++;
+              }else{
+                cursorY=margin+pieceH+gap;
+              }
+            }
+          }
+        }
+
+        addPageNumber();
+        pdf.setProperties({title:'CFM Heating Pre-Startup Checklist',subject:'Completed and electronically signed pre-startup checklist',author:document.getElementById('printed-name').value,keywords:'CFM Heating, startup checklist, electronic signature'});
+        const blob=pdf.output('blob');
+        const safe=(document.getElementById('project').value||'Project').replace(/[^a-z0-9_-]+/gi,'_').replace(/^_+|_+$/g,'');
+        return new File([blob],`CFM_Pre-Startup_Checklist_${safe}.pdf`,{type:'application/pdf'});
+      }finally{
+        stage.remove();
+      }
+    }
+
+    async function downloadPdf(){const file=await buildPdfFile();if(!file)return;const url=URL.createObjectURL(file);const a=document.createElement('a');a.href=url;a.download=file.name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);showStatus('Signed PDF downloaded.','success');}
+    async function emailPdf(){
+      const file=await buildPdfFile();if(!file)return;
+      const project=document.getElementById('project').value;
+      const shareData={title:'CFM Heating Pre-Startup Checklist - '+project,text:'Attached is the completed and electronically signed CFM Heating Pre-Startup Checklist for '+project+'.',files:[file]};
+      try{
+        if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share(shareData);showStatus('The signed PDF was handed to your selected email/share application.','success');}
+        else{
+          const url=URL.createObjectURL(file),a=document.createElement('a');a.href=url;a.download=file.name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
+          const subject=encodeURIComponent('Completed CFM Heating Pre-Startup Checklist - '+project);
+          const body=encodeURIComponent('Attached is the completed and electronically signed CFM Heating Pre-Startup Checklist.\n\nThe PDF has been downloaded to this computer. Please attach the downloaded file before sending.');
+          window.location.href='mailto:?subject='+subject+'&body='+body;
+          showStatus('Your browser cannot attach files directly. The signed PDF was downloaded and an email draft was opened; attach the downloaded PDF before sending.','info');
+        }
+      }catch(err){if(err.name!=='AbortError')showStatus('The email/share action could not be completed. Use “Download Signed PDF” and attach it to an email.','error');}
+    }
+
+    document.getElementById('emailPdfBtn').addEventListener('click',emailPdf);
+    document.getElementById('downloadPdfBtn').addEventListener('click',downloadPdf);
+    document.getElementById('printBtn').addEventListener('click',()=>window.print());
+    document.getElementById('clearBtn').addEventListener('click',()=>{
+      if(!confirm('Clear all fields, checkboxes, and the captured signature?'))return;
+      document.querySelectorAll('input[type="text"],input[type="date"],textarea').forEach(f=>f.value='');
+      document.querySelectorAll('input[type="checkbox"]').forEach(b=>b.checked=false);
+      signatureImageInput.value='';signaturePreview.removeAttribute('src');signaturePreviewWrap.hidden=true;document.getElementById('openSignatureBtn').style.display='';
+      signatureTimestamp='';auditRecord.textContent='Signature audit record will be added when the form is signed.';clearSignatureCanvas();updateProgress();showStatus('Form cleared.','info');
+    });
+    const today=new Date().toISOString().slice(0,10);if(!document.getElementById('top-date').value)document.getElementById('top-date').value=today;if(!document.getElementById('bottom-date').value)document.getElementById('bottom-date').value=today;
   </script>
 </body>
 </html>
